@@ -1,3 +1,6 @@
+
+'use strict';
+
 /* Задания на урок:
 
 1) Удалить все рекламные блоки со страницы (правая часть сайта)
@@ -12,7 +15,7 @@
 
 5) Добавить нумерацию выведенных фильмов */
 
-'use strict';
+
 
 const movieDB = {
     movies: [
@@ -24,3 +27,31 @@ const movieDB = {
     ]
 };
 
+const advertising = document.querySelector('.promo__adv'),
+      promoGenre = document.querySelector('.promo__genre'),
+      promoBg = document.querySelector('.promo__bg'),
+      promoItem = document.querySelectorAll('.promo__interactive-item'),
+      movieList = document.querySelector('.promo__interactive-list');
+
+advertising.remove();
+promoGenre.textContent = 'Драма';
+promoBg.style.backgroundImage = 'url("img/bg.jpg")';
+
+// console.log(promoItem);
+// movieDB.movies.forEach(item => {
+//     const a = String(item).toLowerCase();
+//     movieDB.movies[i - 1] = a;
+// });
+
+movieList.innerHTML = '';
+movieDB.movies.sort();
+
+movieDB.movies.forEach((element, i) => {
+    movieList.innerHTML += `
+        <li class="promo__interactive-item">#${i + 1})${element}
+            <div class="delete"></div>
+        </li>
+    `;
+});
+
+// console.log(promoBg.innerHTML);
